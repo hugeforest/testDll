@@ -1,0 +1,42 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+ 
+import time
+from ctypes import *
+import ctypes
+
+dll2 = windll.LoadLibrary('xDll.dll')
+
+
+x=c_int()
+x=dll2.LR_MousePoint()
+
+y=dll2.LR_GetWindowTitle(x)
+print (c_wchar_p(y).value)
+
+dll2.LR_Delay(5000)
+
+
+intx=c_int()
+inty=c_int()
+pintx=pointer(intx)
+pinty=pointer(inty)
+
+strs=c_wchar_p("y.bmp")
+sim=c_float(0.9)
+
+result=dll2.LR_FindPictrue(x,0,0,640,480,strs,sim,pintx,pinty)
+print (result)
+print (intx.value,inty.value)
+#dll2.SetFakeWindow(x)
+#time.sleep(3)
+'''
+dll2.SetFakeWindow(x)
+time.sleep(10)
+'''
+
+intx=dll2.LR_GetPixelColor(x,112,27)
+print (intx)
+
+
+

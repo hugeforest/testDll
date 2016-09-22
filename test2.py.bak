@@ -1,0 +1,7 @@
+import os
+import ctypes
+dll = ctypes.WinDLL("mfcdll.dll")
+
+x=dll.add(1,2)
+print(x)
+
